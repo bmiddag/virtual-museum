@@ -1,0 +1,22 @@
+﻿@using VirtualMuseumAPI.Models
+@model Museum
+@section FacebookOG{
+    <meta property='og:title' content='I just visited @Model.Name!' />
+    <meta property='og:site_name' content='museum.awesomepeople.tv' />
+    <meta property='og:description' content='Download now the VirtualMuseum app!' />
+    <meta property='og:image' content='http://www.awesomepeople.tv/img/logo.png' />
+}
+@section scripts{
+    <script>
+        // try to open the url
+        window.open('virtualmuseum:/@Request.Url.PathAndQuery.ToString()');
+    </script>
+}
+@{
+    ViewBag.Title = "Museum " + @Model.Name;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Redirect page for @Model.Name</h2>
+This museum was made by: @Model.AspNetUser.UserName<br />
+<a href="virtualmuseum:/@Request.Url.PathAndQuery.ToString()" class="btn btn-default btn-lg">Open museum</a>
